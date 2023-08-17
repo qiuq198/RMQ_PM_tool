@@ -1,0 +1,41 @@
+<assembly
+        xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+    <id>release</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>true</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>target</directory>
+            <outputDirectory>lib</outputDirectory>
+            <includes>
+                <include>loadtest-1.0-SNAPSHOT-executable.jar</include>
+            </includes>
+        </fileSet>
+
+        <!-- 将scripts目录下的所有文件输出到打包后的bin目录中 -->
+        <fileSet>
+            <directory>shell</directory>
+            <excludes>
+                <exclude>init.sh</exclude>
+            </excludes>
+            <fileMode>0755</fileMode>
+            <!--如果是脚本，一定要改为unix.如果是在windows上面编码，会出现dos编写问题-->
+            <lineEnding>unix</lineEnding>
+            <filtered>true</filtered><!-- 是否进行属性替换 -->
+        </fileSet>
+    </fileSets>
+
+    <files>
+
+        <file>
+            <source>../README.md</source>
+            <outputDirectory>.</outputDirectory>
+        </file>
+    </files>
+
+
+</assembly>

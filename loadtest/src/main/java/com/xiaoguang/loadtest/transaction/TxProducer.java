@@ -22,7 +22,7 @@ public class TxProducer {
     private static final long START_TIME = System.currentTimeMillis();
     private static final LongAdder MSG_COUNT = new LongAdder();
 
-    //broker max check times should less than this value
+    // broker max check times should less than this value
     static final int MAX_CHECK_RESULT_IN_MSG = 20;
 
     public static void main(String[] args) throws MQClientException, UnsupportedEncodingException {
