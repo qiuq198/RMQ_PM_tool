@@ -9,9 +9,19 @@ else
 fi
 echo "process name is $name"
 
-PROCESS=$(ps -ef|grep $name |grep -v grep|grep -v PPID|awk '{ print $2}')
-for i in $PROCESS
+while true
 do
-  echo "Kill the $name process [ $i ]"
-  kill -9 "$i"
+    PROCESS=$(ps -ef|grep $name |grep -v grep|grep -v PPID|awk '{ print $2}')
+    if [ -z "$PROCESS" ] ;then
+      echo "PROCESS为空，等待 10 秒钟" ;
+      sleep 10 # 每10s检查一次
+    else
+      echo "进程正在运行，等待 5 分钟"
+      sleep 300 # 等待 5 分钟
+      for i in $PROCESS
+      do
+        echo "Kill the $name process [ $i ]"
+        kill -9 "$i"
+      done
+    fi
 done
