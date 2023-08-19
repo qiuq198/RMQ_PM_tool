@@ -16,8 +16,8 @@ do
       echo "PROCESS为空，等待 10 秒钟" ;
       sleep 10 # 每10s检查一次
     else
-      echo "进程正在运行，等待 5 分钟"
-      sleep 300 # 等待 5 分钟
+      echo "进程正在运行，等待 3 分钟"
+      sleep 180 # 等待 3 分钟
       for i in $PROCESS
       do
         echo "Kill the $name process [ $i ]"
