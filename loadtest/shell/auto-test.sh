@@ -5,7 +5,7 @@ msg_sizes=(128 1024 5120 1048576)
 
 echo "check ../test_log"
 if [ ! -d "../test_log" ]; then
-  mkdir -p "$dir"
+  mkdir -p "../test_log"
   echo "目录已创建"
 else
   echo "目录已存在"
@@ -25,7 +25,7 @@ do
     ./commonProducer.sh "$i" "$j" | tee ../test_log/produce_test-$i-$j-2.log
      sleep 10
     ./commonProducer.sh "$i" "$j" | tee ../test_log/produce_test-$i-$j-3.log
-    sleep 10
+     sleep 10
      echo "Running consumer script"
     ./clusteringConsumer.sh | tee ../test_log/consumer_test-64-$i-$j.log
   done
